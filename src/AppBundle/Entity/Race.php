@@ -94,5 +94,10 @@ class Race
     {
         return $this->stats;
     }
+    
+    public function __toString() {
+        return $this->nom;
+    }
+
 }
 

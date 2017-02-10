@@ -9,6 +9,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Joueur;
+use AppBundle\Entity\Personnage;
+use AppBundle\Form\PersonnageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -51,7 +53,7 @@ class PlayersController extends Controller {
                     $entityManager->persist($joueur);
                 }
                 //mise en session du joueur
-                $r->getSession()->set('j' . strval($i), $joueur);
+                $r->getSession()->set('j' . strval($i), $joueur); // 
             }
         }
         $entityManager->flush();
@@ -60,9 +62,25 @@ class PlayersController extends Controller {
     }
 
     /**
+     * @Route("/perso/create",name="savePersonnage")
+     * @param Request $r
+     */
+    public function savePersonnage(Request $r){
+        $em = $this->getDoctrine()->getManager();
+        $personnage = new Personnage();
+        $form = $this->createForm(PersonnageType::class, $personnage);
+        $form->handleRequest($r);
+        $em->persist($personnage->majStats());
+        $em->persist($personnage);
+        $em->flush();
+        return $this->redirectToRoute("switch");
+    }
+    
+    /**
      * Doit etre appelée par la validation de la création du personnage precendent !
      * @param Request $r
      * @return type
+     * @Route("/perso/switch",name="switch")
      */
     public function switchPlayer(Request $r) {
         $next = $r->getSession()->get('actuel') + 1;
