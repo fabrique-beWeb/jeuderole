@@ -54,6 +54,8 @@ class PlayersController extends Controller {
                 }
                 //mise en session du joueur
                 $r->getSession()->set('j' . strval($i), $joueur); // 
+            }else{
+                $r->getSession()->remove('j' . strval($i)); // 
             }
         }
         $entityManager->flush();
@@ -67,12 +69,16 @@ class PlayersController extends Controller {
      */
     public function savePersonnage(Request $r){
         $em = $this->getDoctrine()->getManager();
+        $joueur = $r->getSession()->get("j".strval($r->getSession()->get('actuel')));
         $personnage = new Personnage();
         $form = $this->createForm(PersonnageType::class, $personnage);
         $form->handleRequest($r);
         $em->persist($personnage->majStats());
         $em->persist($personnage);
+        $joueur->setPersonnage($personnage);
+        $em->merge($joueur);
         $em->flush();
+        
         return $this->redirectToRoute("switch");
     }
     

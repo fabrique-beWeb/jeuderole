@@ -198,7 +198,7 @@ class Personnage {
      * @param int $ligne
      * @param int $colonne
      */
-    public function seDeplacer(int $ligne, int $colonne){
+    public function seDeplacer($ligne, $colonne){
         $this->positionH = $ligne;
         $this->positionV = $colonne;
     }
