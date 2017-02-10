@@ -95,5 +95,6 @@ class Joueur
     {
         return $this->personnage;
     }
+    
 }
 

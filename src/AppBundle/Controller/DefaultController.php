@@ -23,6 +23,16 @@ class DefaultController extends Controller
     public function creationPersonnage(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/creationPersonnage.html.twig');
+        return $this->render('default/creationPersonnage.html.twig',array(
+            "joueur" => $request->getSession()->get("j" . strval($request->getSession()->get('actuel')))
+        ));
+    }
+    /**
+     * @Route("/game", name="game")
+     */
+    public function getGameUI(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/game_ui.twig');
     }
 }
