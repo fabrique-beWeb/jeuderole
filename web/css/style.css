@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 body{
     visibility: hidden;
+    background-color: rgba(255,255,255,0.8);
 }
 /*
 Accueil
@@ -25,6 +26,69 @@ button{
     font-size: 3em;
     
 }
+form{
+    position: relative;
+    width: 300px;
+}
+form #titre{
+    text-align: center;
+}
+form input{
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+form input[type='text']{
+    background-color: rgba(255,255,255,0.4);
+    margin-bottom: 10px;
+    border: 0px;
+    border-bottom: 2px solid rgba(0,0,0,0.7);
+    outline: none;
+}
+form input[type='text']:hover{
+    background-color: rgba(0,0,0,0.2);
+    border-bottom: 2px solid rgba(0,0,0,0.4);
+}
+form input[type='submit']{
+    background-color: rgba(255,255,255,0.4);
+    margin: 10px 0 5px 0;
+    border: 2px solid rgba(0,0,0,0.7);
+}
+form input[type='submit']:hover{
+    background-color: rgba(0,0,0,0.8);
+    border: 2px solid rgba(0,0,0,0.2);
+    color : white;
+}
+form select{
+    width: 100%;
+    background-color: rgba(255,255,255,0.4);
+    margin: 10px 0 5px 0;
+    border: 2px solid rgba(0,0,0,0.7);
+    outline: none;
+}
+form select:hover{
+    background-color: rgba(0,0,0,0.8);
+    border: 2px solid rgba(0,0,0,0.2);
+    color : white;
+}
+form button{
+    height : 50px;
+    line-height: 50px;
+    font-size: 30px;
+    background-color: rgba(255,255,255,0.4);
+    margin: 10px 0 5px 0;
+    border: 2px solid rgba(0,0,0,0.7);
+}
+form button:hover{
+    background-color: rgba(0,0,0,0.8);
+    border: 2px solid rgba(0,0,0,0.2);
+    color : white;
+}
+#pool{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+/*useless !!!!!! */
 #selection{
     display: none;
     position: relative;

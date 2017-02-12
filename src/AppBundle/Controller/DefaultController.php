@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\PersonnageType;
+use AppBundle\Form\StatsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +34,27 @@ class DefaultController extends Controller
         return $this->render('default/creationPersonnage.html.twig',array(
             "j" => $joueur,
             "joueur" => $request->getSession()->get("j" . strval($request->getSession()->get('actuel'))),
+            "formulaire" => $form->createView()
+        ));
+    }
+    /**
+     * @Route("/personnage/create/2", name="createPerso2")
+     */
+    public function creationPersonnage2(Request $request)
+    {        
+        //Recuperation de l'objet joueur en session
+        $numeroDuJoueur = $request->getSession()->get('actuel');
+        $numeroDuJoueurEnChaineDeCaractere = strval($numeroDuJoueur);
+        $joueur = $request->getSession()->get("j" . $numeroDuJoueurEnChaineDeCaractere);
+        //recuperation du personnage
+        $personnage = $joueur->getPersonnage();
+        $stats = $personnage->getStats();
+        //création du formulaire basé sur le Personnage
+        $form = $this->createForm(StatsType::class,$stats);
+        // on retourne tout sur la vue twig
+        return $this->render('default/creationPersonnage_2.html.twig',array(
+            "personnage" => $personnage,
+            "joueur" => $joueur,
             "formulaire" => $form->createView()
         ));
     }

@@ -79,6 +79,15 @@ class PlayersController extends Controller {
         $em->merge($joueur);
         $em->flush();
         
+        return $this->redirectToRoute("createPerso2");
+    }
+    
+    /**
+     * @Route("/perso/update",name="updatePersonnage")
+     * @param Request $r
+     */
+    public function updatePersonnage(Request $r){
+        
         return $this->redirectToRoute("switch");
     }
     

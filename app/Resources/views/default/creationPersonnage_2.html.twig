@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    {{ form_start(formulaire,{'attr':{'action':path("updatePersonnage")}}) }}
+    <p id="titre">{{ joueur.email }}<p>
+    <p id="titre">{{ personnage.nom }}<p>
+    {{ form_row(formulaire.pv, { 'attr': {'min': personnage.stats.pv,'max':personnage.stats.pv} }) }}
+    {{ form_row(formulaire.mov, { 'attr': {'min': personnage.stats.mov,'max':personnage.stats.mov} }) }}
+    {{ form_row(formulaire.att, { 'attr': {'min': personnage.stats.att,'max':personnage.stats.att} }) }}
+    {{ form_row(formulaire.def, { 'attr': {'readonly':''} }) }}
+    {{form_rest(formulaire)}}
+    <input type="submit" value="mettre a jour" />
+    <button id="generator">Generer</button><label id="pool" for="generator">0</label>
+    {{ form_end(formulaire) }}
+{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+            <script type="text/javascript" src="{{asset("./script/js.js")}}"></script>
+            <script type="text/javascript" src="{{asset("./script/skills.js")}}"></script>
+        {% endblock %}
